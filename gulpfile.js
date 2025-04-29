@@ -40,6 +40,18 @@ function imagenes(done) {
         .pipe( dest('build/img') )
     done();
 }
+const gulp = require('gulp');
+const fs = require('fs');
+
+gulp.task('createDistDirectory', function() {
+  if (!fs.existsSync('dist')) {
+    fs.mkdirSync('dist');
+  }
+});
+
+gulp.task('build', gulp.series('createDistDirectory', function() {
+  // Your existing build tasks here
+}));
 
 exports.css = css;
 exports.dev = dev;
